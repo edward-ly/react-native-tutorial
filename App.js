@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 
-export default class JustifyContentBasics extends Component {
+export default class PizzaTranslator extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: "",
+    };
+  }
+
   render() {
     return (
-      // Try setting 'justifyContent' to 'flex-start', 'center', 'flex-end', 'space-around', or 'space-between'.
-      // The 'space-evenly' value is invalid.
-      <View style={{
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'space-around',
-      }}>
-        <View style={{ width: 50, height: 50, backgroundColor: 'powderblue' }} />
-        <View style={{ width: 50, height: 50, backgroundColor: 'skyblue' }} />
-        <View style={{ width: 50, height: 50, backgroundColor: 'steelblue' }} />
+      <View style={{ padding: 16 }}>
+        <TextInput
+          style={{ fontSize: 32, height: 48, borderColor: "gray", borderWidth: 2, padding: 4 }}
+          underlineColorAndroid="transparent"
+          placeholder="Type here to translate!"
+          onChangeText={ text => this.setState({ text: text }) }
+        />
+        <Text style={{ padding: 10, fontSize: 42 }}>
+          { this.state.text.split(" ").map( word  => word && "🍕").join(" ") }
+        </Text>
       </View>
     );
   }
